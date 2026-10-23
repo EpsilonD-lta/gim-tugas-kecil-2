@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://dd3y0i04cdq5p"]
+
+[ext_resource type="Texture2D" uid="uid://brsvpltugf0dh" path="res://graphics/white_background.jpg" id="1_itohn"]
+[ext_resource type="Texture2D" uid="uid://cbkmdbrgwcji0" path="res://graphics/grid_background.png" id="2_kdo08"]
+[ext_resource type="PackedScene" uid="uid://bo1tk0o7jaccy" path="res://scenes/player.tscn" id="3_kdo08"]
+[ext_resource type="PackedScene" uid="uid://3hogjvmf1nlu" path="res://scenes/test_node_aim.tscn" id="4_wv5ie"]
+[ext_resource type="PackedScene" uid="uid://dc01wvp023uqc" path="res://scenes/projectile.tscn" id="5_qa05l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(77, 735.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5viw"]
+size = Vector2(1388.4164, 75.987686)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc63w"]
+size = Vector2(63.5, 1010.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h7mn"]
+size = Vector2(1751, 65)
+
+[node name="LevelArea" type="Node2D" unique_id=1760073528]
+
+[node name="LevelBackground" type="Sprite2D" parent="." unique_id=922786637]
+position = Vector2(579.875, 330.24997)
+scale = Vector2(0.4283163, 0.4283163)
+texture = ExtResource("1_itohn")
+
+[node name="LevelGrid" type="Sprite2D" parent="." unique_id=321577776]
+modulate = Color(1, 1, 1, 0.07058824)
+position = Vector2(593, 470)
+scale = Vector2(2.1155913, 2.1155913)
+texture = ExtResource("2_kdo08")
+
+[node name="LevelBorder" type="StaticBody2D" parent="." unique_id=1412064515]
+position = Vector2(571, 311)
+
+[node name="LevelBorderLeft" type="CollisionShape2D" parent="LevelBorder" unique_id=264544720]
+position = Vector2(-611, 17.25)
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="LevelBorderRight" type="CollisionShape2D" parent="LevelBorder" unique_id=1564718685]
+position = Vector2(620, -15)
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="LevelBorderTop" type="CollisionShape2D" parent="LevelBorder" unique_id=44187802]
+position = Vector2(13.791809, -351)
+shape = SubResource("RectangleShape2D_p5viw")
+
+[node name="LevelBorderBottom" type="CollisionShape2D" parent="LevelBorder" unique_id=1305278071]
+position = Vector2(-1, 376)
+shape = SubResource("RectangleShape2D_p5viw")
+
+[node name="ArrowBorder" type="StaticBody2D" parent="." unique_id=1131244799 groups=["arrow_border"]]
+position = Vector2(232, 444)
+
+[node name="ArrowBorderLeft" type="CollisionShape2D" parent="ArrowBorder" unique_id=1593849893]
+position = Vector2(-387, -121.25)
+shape = SubResource("RectangleShape2D_jc63w")
+
+[node name="ArrowBorderRight" type="CollisionShape2D" parent="ArrowBorder" unique_id=1439377582]
+position = Vector2(1086, -131)
+shape = SubResource("RectangleShape2D_jc63w")
+
+[node name="ArrowBorderTop" type="CollisionShape2D" parent="ArrowBorder" unique_id=1991970125]
+position = Vector2(358, -634)
+shape = SubResource("RectangleShape2D_7h7mn")
+
+[node name="ArrowBorderTop2" type="CollisionShape2D" parent="ArrowBorder" unique_id=132951565]
+position = Vector2(429, 409)
+shape = SubResource("RectangleShape2D_7h7mn")
+
+[node name="Player" parent="." unique_id=1663473045 instance=ExtResource("3_kdo08")]
+position = Vector2(585, 625)
+
+[node name="TestNodeAim" parent="." unique_id=1836767110 instance=ExtResource("4_wv5ie")]
+position = Vector2(469, 234)
+
+[node name="Projectile" parent="." unique_id=1904764333 instance=ExtResource("5_qa05l")]
+position = Vector2(232, 444)
