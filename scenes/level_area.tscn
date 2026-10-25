@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://brsvpltugf0dh" path="res://graphics/white_background.jpg" id="1_itohn"]
 [ext_resource type="Texture2D" uid="uid://cbkmdbrgwcji0" path="res://graphics/grid_background.png" id="2_kdo08"]
 [ext_resource type="PackedScene" uid="uid://bo1tk0o7jaccy" path="res://scenes/player.tscn" id="3_kdo08"]
-[ext_resource type="PackedScene" uid="uid://3hogjvmf1nlu" path="res://scenes/test_node_aim.tscn" id="4_wv5ie"]
+[ext_resource type="PackedScene" uid="uid://cxnlreo80p4mt" path="res://scenes/block.tscn" id="4_eiy1h"]
 [ext_resource type="PackedScene" uid="uid://dc01wvp023uqc" path="res://scenes/projectile.tscn" id="5_qa05l"]
 [ext_resource type="PackedScene" uid="uid://cpa65pxxy8k8j" path="res://scenes/glup_cat_enemy.tscn" id="6_hbte4"]
 [ext_resource type="PackedScene" uid="uid://ck2rj08dysukw" path="res://scenes/hi_cat_enemy.tscn" id="7_pqsae"]
-[ext_resource type="PackedScene" uid="uid://dba73rgp54qif" path="res://scenes/fatass_enemy.tscn" id="8_8yu2t"]
 [ext_resource type="AudioStream" uid="uid://cb6qw6xk43u1g" path="res://sounds/fire_beat.mp3" id="10_55fnj"]
+[ext_resource type="PackedScene" uid="uid://b2rnedtg4qwv6" path="res://scenes/enemy_pathfinder.tscn" id="11_55fnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 size = Vector2(77, 735.5)
@@ -22,6 +22,41 @@ size = Vector2(63.5, 1010.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7h7mn"]
 size = Vector2(1751, 65)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uj04i"]
+vertices = PackedVector2Array(-779.0625, -350.03125, -782.9297, 259.27344, -1011.97656, 265.71094, -1011.0078, -350.96094)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1021, -361, -1022, 276, -773, 269, -769, -360)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_p5viw"]
+vertices = PackedVector2Array(1134.0078, 631.84375, 897.7969, 628.14844, 885.2031, 16.921875, 1134.9766, 15.0703125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(875, 7, 888, 638, 1144, 642, 1145, 5)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jc63w"]
+vertices = PackedVector2Array(1130.2969, 123.96875, 27.90625, 121.02344, 27.078125, 23.921875, 1133.6719, 15.078125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(17, 14, 18, 131, 1140, 134, 1144, 5)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7h7mn"]
+vertices = PackedVector2Array(1132.75, 627.96094, 24.3125, 624.03125, 28.679688, 485.95313, 1129.2266, 481.03906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(19, 476, 1139, 471, 1143, 638, 14, 634)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vpupq"]
+vertices = PackedVector2Array(447.96875, 393.4297, 322.89063, 386.53125, 319.10156, 34.859375, 447.02344, 33.132813)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(309, 25, 313, 396, 458, 404, 457, 23)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0udnx"]
+vertices = PackedVector2Array(447.6875, 217.90625, -21.890625, 214.07813, -20.101563, 43.8125, 442.28906, 35.179688)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-27, 38, 442, 35, 442, 229, -25, 220)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2uf65"]
+vertices = PackedVector2Array(432.25, 42.921875, 442.72656, 438.21094, 322.89844, 440.78125, 319.09375, 42.070313)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(309, 32, 313, 451, 453, 448, 442, 33)])
 
 [node name="LevelArea" type="Node2D" unique_id=1760073528]
 script = ExtResource("1_eiy1h")
@@ -78,28 +113,144 @@ shape = SubResource("RectangleShape2D_7h7mn")
 [node name="Player" parent="." unique_id=1663473045 instance=ExtResource("3_kdo08")]
 position = Vector2(585, 625)
 
-[node name="TestNodeAim" parent="." unique_id=1836767110 instance=ExtResource("4_wv5ie")]
-position = Vector2(469, 234)
-
 [node name="Projectile" parent="." unique_id=1904764333 instance=ExtResource("5_qa05l")]
 position = Vector2(232, 444)
 
 [node name="HiCatEnemy" parent="." unique_id=1784767839 instance=ExtResource("7_pqsae")]
-position = Vector2(825, 152)
+position = Vector2(1023, 129)
+scale = Vector2(0.635, 0.635)
 
 [node name="GlupCatEnemy" parent="." unique_id=931191983 instance=ExtResource("6_hbte4")]
-position = Vector2(879, 560)
+position = Vector2(1047, 561)
+scale = Vector2(0.685, 0.685)
 
-[node name="FatassEnemy" parent="." unique_id=1622423372 instance=ExtResource("8_8yu2t")]
-position = Vector2(252, 263)
-
-[node name="FatassEnemy2" parent="." unique_id=1758419642 instance=ExtResource("8_8yu2t")]
-position = Vector2(169, 445)
-
-[node name="FatassEnemy3" parent="." unique_id=2119439515 instance=ExtResource("8_8yu2t")]
-position = Vector2(634, 250)
+[node name="GlupCatEnemy2" parent="." unique_id=1062345400 instance=ExtResource("6_hbte4")]
+position = Vector2(128, 563)
+scale = Vector2(0.685, 0.685)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=369026628]
 position = Vector2(634, 250)
 stream = ExtResource("10_55fnj")
 autoplay = true
+
+[node name="Block" parent="." unique_id=24177578 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(289, 164)
+
+[node name="Block2" parent="." unique_id=1811402863 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(289, 211)
+
+[node name="Block3" parent="." unique_id=675462911 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(288, 256)
+
+[node name="Block4" parent="." unique_id=1547286300 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(290, 303)
+
+[node name="Block5" parent="." unique_id=1092176119 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(290, 346)
+
+[node name="Block6" parent="." unique_id=1184042624 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(289, 395)
+
+[node name="Block7" parent="." unique_id=1219634909 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(288, 438)
+
+[node name="Block8" parent="." unique_id=1446483110 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(335, 439)
+
+[node name="Block9" parent="." unique_id=1332021813 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(385, 439)
+
+[node name="Block10" parent="." unique_id=1281003026 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(434, 439)
+
+[node name="Block11" parent="." unique_id=1090794021 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(485, 439)
+
+[node name="Block12" parent="." unique_id=1612378520 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(537, 439)
+
+[node name="Block13" parent="." unique_id=166389425 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(589, 439)
+
+[node name="Block14" parent="." unique_id=1504112257 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(640, 440)
+
+[node name="Block17" parent="." unique_id=1958612116 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(491, 165)
+
+[node name="Block18" parent="." unique_id=1621859423 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(541, 164)
+
+[node name="Block19" parent="." unique_id=1492325209 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(591, 166)
+
+[node name="Block20" parent="." unique_id=1341913404 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(644, 165)
+
+[node name="Block21" parent="." unique_id=1480159085 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(694, 166)
+
+[node name="Block22" parent="." unique_id=911195580 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(746, 166)
+
+[node name="Block23" parent="." unique_id=1449332192 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(798, 166)
+
+[node name="Block24" parent="." unique_id=1413970715 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(848, 164)
+
+[node name="Block26" parent="." unique_id=1907920504 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(850, 217)
+
+[node name="Block27" parent="." unique_id=1649640377 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(850, 268)
+
+[node name="Block28" parent="." unique_id=115413140 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(852, 319)
+
+[node name="Block29" parent="." unique_id=173683067 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(853, 370)
+
+[node name="Block30" parent="." unique_id=475660040 groups=["arrow_border"] instance=ExtResource("4_eiy1h")]
+position = Vector2(853, 421)
+
+[node name="EnemyPathfinder" parent="." unique_id=632663090 node_paths=PackedStringArray("player") instance=ExtResource("11_55fnj")]
+position = Vector2(1028, 366)
+player = NodePath("../Player")
+
+[node name="EnemyPathfinder2" parent="." unique_id=1202667837 node_paths=PackedStringArray("player") instance=ExtResource("11_55fnj")]
+position = Vector2(411, 562)
+player = NodePath("../Player")
+
+[node name="EnemyPathfinder3" parent="." unique_id=1469277786 node_paths=PackedStringArray("player") instance=ExtResource("11_55fnj")]
+position = Vector2(109, 290)
+player = NodePath("../Player")
+
+[node name="EnemyPathfinder4" parent="." unique_id=667386861 node_paths=PackedStringArray("player") instance=ExtResource("11_55fnj")]
+position = Vector2(428, 79)
+player = NodePath("../Player")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1463282817]
+position = Vector2(1028, 366)
+navigation_polygon = SubResource("NavigationPolygon_uj04i")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." unique_id=389207157]
+navigation_polygon = SubResource("NavigationPolygon_p5viw")
+
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="." unique_id=1022870559]
+navigation_polygon = SubResource("NavigationPolygon_jc63w")
+
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." unique_id=1042441357]
+navigation_polygon = SubResource("NavigationPolygon_7h7mn")
+
+[node name="NavigationRegion2D5" type="NavigationRegion2D" parent="." unique_id=1259000695]
+position = Vector2(9, 1)
+navigation_polygon = SubResource("NavigationPolygon_vpupq")
+
+[node name="NavigationRegion2D7" type="NavigationRegion2D" parent="." unique_id=1309671489]
+position = Vector2(360, 179)
+navigation_polygon = SubResource("NavigationPolygon_0udnx")
+
+[node name="NavigationRegion2D6" type="NavigationRegion2D" parent="." unique_id=1713115522]
+position = Vector2(360, 179)
+navigation_polygon = SubResource("NavigationPolygon_2uf65")

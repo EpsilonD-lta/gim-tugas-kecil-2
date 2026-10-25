@@ -8,6 +8,7 @@
 size = Vector2(41.5, 41)
 
 [node name="Player" type="CharacterBody2D" unique_id=1663473045]
+collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="PlayerIcon" type="Sprite2D" parent="." unique_id=1909096646]

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cxnlreo80p4mt"]
+
+[ext_resource type="Texture2D" uid="uid://2nlrcag4vt1o" path="res://graphics/block_4.png" id="1_cgrg5"]
+[ext_resource type="Texture2D" uid="uid://eme0g5mo0ug" path="res://graphics/block_5.png" id="2_4kun4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj04i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cgrg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4kun4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(47, 48)
+
+[node name="Block" type="StaticBody2D" unique_id=24177578]
+collision_mask = 6
+
+[node name="BlockSprite" type="AnimatedSprite2D" parent="." unique_id=199790143]
+scale = Vector2(0.11427152, 0.11427152)
+sprite_frames = SubResource("SpriteFrames_uj04i")
+frame_progress = 0.37678513
+
+[node name="BlockHitbox" type="CollisionShape2D" parent="." unique_id=1439328140]
+shape = SubResource("RectangleShape2D_uj04i")

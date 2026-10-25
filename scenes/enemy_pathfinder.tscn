@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b2rnedtg4qwv6"]
+
+[ext_resource type="PackedScene" uid="uid://dba73rgp54qif" path="res://scenes/fatass_enemy.tscn" id="1_qv3s4"]
+[ext_resource type="Script" uid="uid://boo4sn5ssvypp" path="res://scenes/enemy_pathfinder.gd" id="1_wohii"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uj04i"]
+radius = 35.014282
+
+[node name="EnemyPathfinder" type="CharacterBody2D" unique_id=632663090]
+collision_layer = 4
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_wohii")
+
+[node name="FatassEnemy" parent="." unique_id=1622423372 instance=ExtResource("1_qv3s4")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1249866277]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_uj04i")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=861331438]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_max_distance = 1000.0
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1963819106]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
