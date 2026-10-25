@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://ck2rj08dysukw"]
+
+[ext_resource type="Script" uid="uid://ci5p10qknq3jm" path="res://scenes/hi_cat_enemy.gd" id="1_5mp60"]
+[ext_resource type="Texture2D" uid="uid://dd1s4el5u8pto" path="res://graphics/hi_cat.png" id="2_djgsj"]
+[ext_resource type="PackedScene" uid="uid://0ioo5ewej0pj" path="res://scenes/death_text.tscn" id="2_paaaq"]
+[ext_resource type="Script" uid="uid://mepgvk0d6q1q" path="res://scenes/hi_cat_hitbox.gd" id="4_43mw6"]
+[ext_resource type="AudioStream" uid="uid://bx3vsa1wokawx" path="res://sounds/meow.mp3" id="5_07nds"]
+[ext_resource type="AudioStream" uid="uid://cnqgvodgaqsmg" path="res://sounds/ded (DONT PLAY AT FULL VOLUME PLEASE).mp3" id="6_kxu86"]
+
+[sub_resource type="Animation" id="Animation_ba4eu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nwxrl"]
+resource_name = "take_damage"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4),
+"transitions": PackedFloat32Array(1, 0.2500001, 1),
+"update": 0,
+"values": [Color(0.92941177, 1, 1, 1), Color(0.92941177, 0, 0, 1), Color(0.92941177, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_djgsj"]
+_data = {
+&"RESET": SubResource("Animation_ba4eu"),
+&"take_damage": SubResource("Animation_nwxrl")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mp60"]
+bg_color = Color(0.7252515, 0.5453514, 0.5733925, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43mw6"]
+bg_color = Color(0, 0.7607843, 0.22352941, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(155, 133)
+
+[node name="HiCatEnemy" type="Node2D" unique_id=1784767839]
+script = ExtResource("1_5mp60")
+metadata/_custom_type_script = "uid://ivuiwebsi4sx"
+
+[node name="TakeDamageAnimation" type="AnimationPlayer" parent="." unique_id=52370136]
+root_node = NodePath("../HiCatSprite")
+libraries/ = SubResource("AnimationLibrary_djgsj")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=166328032]
+offset_left = -64.0
+offset_top = -93.0
+offset_right = 85.0
+offset_bottom = -72.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5mp60")
+theme_override_styles/fill = SubResource("StyleBoxFlat_43mw6")
+value = 50.0
+show_percentage = false
+
+[node name="HiCatSprite" type="Sprite2D" parent="." unique_id=549228600]
+scale = Vector2(0.15223174, 0.15223174)
+texture = ExtResource("2_djgsj")
+
+[node name="DeathText" parent="." unique_id=1879194397 instance=ExtResource("2_paaaq")]
+visible = false
+position = Vector2(-28, -26)
+
+[node name="HiCatHitbox" type="Area2D" parent="." unique_id=645550749]
+script = ExtResource("4_43mw6")
+
+[node name="HitboxShape" type="CollisionShape2D" parent="HiCatHitbox" unique_id=206287259]
+position = Vector2(13.5, 5.5)
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="HitSoundEffect" type="AudioStreamPlayer2D" parent="." unique_id=706057883]
+stream = ExtResource("5_07nds")
+volume_db = -7.015
+
+[node name="DeadSoundEffect" type="AudioStreamPlayer2D" parent="." unique_id=654324246]
+stream = ExtResource("6_kxu86")
+volume_db = -15.429
+
+[connection signal="area_entered" from="HiCatHitbox" to="HiCatHitbox" method="_on_area_entered"]

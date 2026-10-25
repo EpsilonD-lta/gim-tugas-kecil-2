@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3hogjvmf1nlu"]
 
-[ext_resource type="Script" uid="uid://rqa3301picpx" path="res://test_node_aim.gd" id="1_uies1"]
+[ext_resource type="Script" uid="uid://rqa3301picpx" path="res://scripts/test_node_aim.gd" id="1_uies1"]
 [ext_resource type="Texture2D" uid="uid://bujn62a5n01kf" path="res://icon.svg" id="2_doxtr"]
 
 [node name="TestNodeAim" type="Node2D" unique_id=1836767110]

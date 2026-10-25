@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://dba73rgp54qif"]
+
+[ext_resource type="Script" uid="uid://bao5hkogggdyk" path="res://scenes/fatass_enemy.gd" id="1_b1hdk"]
+[ext_resource type="PackedScene" uid="uid://0ioo5ewej0pj" path="res://scenes/death_text.tscn" id="2_7nuiq"]
+[ext_resource type="Texture2D" uid="uid://ddexo7beoan8r" path="res://graphics/fatass.png" id="3_1x4g3"]
+[ext_resource type="Script" uid="uid://bge5mciigvbgv" path="res://scenes/fatass_hitbox.gd" id="4_7nuiq"]
+[ext_resource type="AudioStream" uid="uid://bx3vsa1wokawx" path="res://sounds/meow.mp3" id="5_tr3co"]
+[ext_resource type="AudioStream" uid="uid://cnqgvodgaqsmg" path="res://sounds/ded (DONT PLAY AT FULL VOLUME PLEASE).mp3" id="6_xngm2"]
+
+[sub_resource type="Animation" id="Animation_ba4eu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nwxrl"]
+resource_name = "take_damage"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4),
+"transitions": PackedFloat32Array(1, 0.2500001, 1),
+"update": 0,
+"values": [Color(0.92941177, 1, 1, 1), Color(0.92941177, 0, 0, 1), Color(0.92941177, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tr3co"]
+_data = {
+&"RESET": SubResource("Animation_ba4eu"),
+&"take_damage": SubResource("Animation_nwxrl")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xngm2"]
+bg_color = Color(0.7252515, 0.5453514, 0.5733925, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3b4y"]
+bg_color = Color(0, 0.7607843, 0.22352941, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
+size = Vector2(89, 70)
+
+[node name="FatassEnemy" type="Node2D" unique_id=1622423372]
+script = ExtResource("1_b1hdk")
+metadata/_custom_type_script = "uid://ivuiwebsi4sx"
+
+[node name="TakeDamageAnimation" type="AnimationPlayer" parent="." unique_id=704853723]
+libraries/ = SubResource("AnimationLibrary_tr3co")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1486078916]
+offset_left = -42.0
+offset_top = -44.0
+offset_right = 39.0
+offset_bottom = -33.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xngm2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y3b4y")
+value = 50.0
+show_percentage = false
+
+[node name="FatassSprite" type="Sprite2D" parent="." unique_id=2006631289]
+position = Vector2(0.3275261, 0.2500013)
+scale = Vector2(0.09683544, 0.096835434)
+texture = ExtResource("3_1x4g3")
+
+[node name="FatassHitbox" type="Area2D" parent="." unique_id=546382633]
+script = ExtResource("4_7nuiq")
+
+[node name="HitboxShape" type="CollisionShape2D" parent="FatassHitbox" unique_id=2051395027]
+position = Vector2(-2.5, 4)
+shape = SubResource("RectangleShape2D_uj04i")
+
+[node name="DeathText" parent="." unique_id=1879194397 instance=ExtResource("2_7nuiq")]
+visible = false
+position = Vector2(-32, -26)
+
+[node name="HitSoundEffect" type="AudioStreamPlayer2D" parent="." unique_id=874634292]
+stream = ExtResource("5_tr3co")
+volume_db = -7.015
+
+[node name="DeadSoundEffect" type="AudioStreamPlayer2D" parent="." unique_id=781995535]
+stream = ExtResource("6_xngm2")
+volume_db = -15.429
+
+[connection signal="area_entered" from="FatassHitbox" to="FatassHitbox" method="_on_area_entered"]

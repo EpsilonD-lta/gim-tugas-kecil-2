@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://dd3y0i04cdq5p"]
 
+[ext_resource type="Script" uid="uid://dcxi0sp2r27gj" path="res://scenes/level_area.gd" id="1_eiy1h"]
 [ext_resource type="Texture2D" uid="uid://brsvpltugf0dh" path="res://graphics/white_background.jpg" id="1_itohn"]
 [ext_resource type="Texture2D" uid="uid://cbkmdbrgwcji0" path="res://graphics/grid_background.png" id="2_kdo08"]
 [ext_resource type="PackedScene" uid="uid://bo1tk0o7jaccy" path="res://scenes/player.tscn" id="3_kdo08"]
 [ext_resource type="PackedScene" uid="uid://3hogjvmf1nlu" path="res://scenes/test_node_aim.tscn" id="4_wv5ie"]
 [ext_resource type="PackedScene" uid="uid://dc01wvp023uqc" path="res://scenes/projectile.tscn" id="5_qa05l"]
+[ext_resource type="PackedScene" uid="uid://cpa65pxxy8k8j" path="res://scenes/glup_cat_enemy.tscn" id="6_hbte4"]
+[ext_resource type="PackedScene" uid="uid://ck2rj08dysukw" path="res://scenes/hi_cat_enemy.tscn" id="7_pqsae"]
+[ext_resource type="PackedScene" uid="uid://dba73rgp54qif" path="res://scenes/fatass_enemy.tscn" id="8_8yu2t"]
+[ext_resource type="AudioStream" uid="uid://cb6qw6xk43u1g" path="res://sounds/fire_beat.mp3" id="10_55fnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj04i"]
 size = Vector2(77, 735.5)
@@ -19,6 +24,7 @@ size = Vector2(63.5, 1010.5)
 size = Vector2(1751, 65)
 
 [node name="LevelArea" type="Node2D" unique_id=1760073528]
+script = ExtResource("1_eiy1h")
 
 [node name="LevelBackground" type="Sprite2D" parent="." unique_id=922786637]
 position = Vector2(579.875, 330.24997)
@@ -77,3 +83,23 @@ position = Vector2(469, 234)
 
 [node name="Projectile" parent="." unique_id=1904764333 instance=ExtResource("5_qa05l")]
 position = Vector2(232, 444)
+
+[node name="HiCatEnemy" parent="." unique_id=1784767839 instance=ExtResource("7_pqsae")]
+position = Vector2(825, 152)
+
+[node name="GlupCatEnemy" parent="." unique_id=931191983 instance=ExtResource("6_hbte4")]
+position = Vector2(879, 560)
+
+[node name="FatassEnemy" parent="." unique_id=1622423372 instance=ExtResource("8_8yu2t")]
+position = Vector2(252, 263)
+
+[node name="FatassEnemy2" parent="." unique_id=1758419642 instance=ExtResource("8_8yu2t")]
+position = Vector2(169, 445)
+
+[node name="FatassEnemy3" parent="." unique_id=2119439515 instance=ExtResource("8_8yu2t")]
+position = Vector2(634, 250)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=369026628]
+position = Vector2(634, 250)
+stream = ExtResource("10_55fnj")
+autoplay = true
